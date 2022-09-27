@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     var mathSign: Bool = false
     var operation: Int = 0
     
+    
     @IBOutlet weak var result: UILabel!
     
     
@@ -27,10 +28,12 @@ class ViewController: UIViewController {
             result.text = result.text! + String(sender.tag)
         }
         numberFromScreen = Double(result.text!)!
+        
     }
     
     @IBAction func buttons(_ sender: UIButton) {
-        if result.text != "" && sender.tag != 10 && sender.tag != 15 {
+        if result.text != "" && sender.tag != 10 && sender.tag != 15 && sender.tag != 16 {
+            
             firstNum = Double(result.text!)! // отслеживаем какое предыдущие число было до нажатия на мат знак
             
             if sender.tag == 11 {
@@ -45,11 +48,16 @@ class ViewController: UIViewController {
             else if sender.tag == 14{
                 result.text = "+"
             }
+            else if sender.tag == 16{
+                result.text = "."
+            }
             operation = sender.tag
             mathSign = true
 
         }
         else if sender.tag == 15{
+            
+            
             if operation == 11{
                 result.text = String(firstNum / numberFromScreen)
             }
@@ -63,12 +71,18 @@ class ViewController: UIViewController {
             else if operation == 14{
                 result.text = String(firstNum + numberFromScreen)
             }
+        
+        }
+        else if sender.tag == 16{
+            result.text = result.text! + "."
+            
         }
         else if sender.tag == 10{
             result.text = ""
             firstNum = 0
             numberFromScreen = 0
             operation = 0
+            
         }
     }
     override func viewDidLoad() {
