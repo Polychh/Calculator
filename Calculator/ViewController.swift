@@ -23,20 +23,15 @@ class ViewController: UIViewController {
             result.text = String(sender.tag) // вписываем просто значение с кнопки если уже нажат какой то знак
             mathSign = false
         }
-        
         else{
             result.text = result.text! + String(sender.tag)
-        }
-        if sender.tag == 17{
-            result.text = result.text!
-            
         }
         numberFromScreen = Double(result.text!)!
         
     }
     
     @IBAction func buttons(_ sender: UIButton) {
-        if result.text != "" && sender.tag != 10 && sender.tag != 15 && sender.tag != 16 && sender.tag != 17 {
+        if result.text != "" && sender.tag != 10 && sender.tag != 15 && sender.tag != 16 && sender.tag != 17,sender.tag != 18, sender.tag != 19 {
             
             firstNum = Double(result.text!)! // отслеживаем какое предыдущие число было до нажатия на мат знак
             
@@ -59,7 +54,6 @@ class ViewController: UIViewController {
         }
         else if sender.tag == 15{
             
-            
             if operation == 11{
                 result.text = String(firstNum / numberFromScreen)
             }
@@ -81,6 +75,18 @@ class ViewController: UIViewController {
         }
         else if sender.tag == 17{
             result.text = String(sqrt(Double(result.text!)!))
+        }
+        
+        else if sender.tag == 18{
+            result.text = "-" + result.text!
+
+        }
+        else if sender.tag == 19{
+            if firstNum == 0 {
+                result.text = String(Double(Double(result.text!)! / 100))
+            }else {
+            result.text = String(Double(firstNum * numberFromScreen / 100))
+            }
         }
 
         else if sender.tag == 10{
