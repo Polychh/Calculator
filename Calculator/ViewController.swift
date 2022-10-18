@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     var numberFromScreen: Double = 0
-    var firstNum: Double = 0 // ло того как нажали на мат знак
+    var firstNum: Double = 0 // до того как нажали на мат знак
     var mathSign: Bool = false
     var operation: Int = 0
     
