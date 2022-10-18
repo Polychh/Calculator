@@ -27,81 +27,70 @@ class ViewController: UIViewController {
             result.text = result.text! + String(sender.tag)
         }
         numberFromScreen = Double(result.text!)!
-        
+//        print("num1 = ",firstNum)
+//        print("num2 = ",numberFromScreen)
     }
     
     @IBAction func buttons(_ sender: UIButton) {
-        if result.text != "" && sender.tag != 10 && sender.tag != 15 && sender.tag != 16 && sender.tag != 17,sender.tag != 18, sender.tag != 19 {
-            
-            firstNum = Double(result.text!)! // отслеживаем какое предыдущие число было до нажатия на мат знак
-            
-            if sender.tag == 11 {
-                result.text = "/"
-            }
-            else if sender.tag == 12 {
-                result.text = "x"
-            }
-            else if sender.tag == 13{
-                result.text = "-"
-            }
-            else if sender.tag == 14{
-                result.text = "+"
-            }
         
+        switch sender.tag {
+        case 10:
+            result.text = ""
+            firstNum = 0
+            numberFromScreen = 0
+            operation = 0
+        case 11:
+            firstNum = Double(result.text!)!
+            result.text = "/"
             operation = sender.tag
             mathSign = true
-
-        }
-        else if sender.tag == 15{
-            
-            if operation == 11{
-                result.text = String(firstNum / numberFromScreen)
-            }
-            else if operation == 12{
-                result.text = String(firstNum * numberFromScreen)
-                
-            }
-            else if operation == 13{
-                result.text = String(firstNum - numberFromScreen)
-            }
-            else if operation == 14{
-                result.text = String(firstNum + numberFromScreen)
-            }
-        
-        }
-        else if sender.tag == 16{
+        case 12:
+            firstNum = Double(result.text!)!
+            result.text = "x"
+            operation = sender.tag
+            mathSign = true
+//            print("num1 = ",firstNum)
+//            print("num2 = ",numberFromScreen)
+        case 13:
+            firstNum = Double(result.text!)!
+            result.text = "-"
+            operation = sender.tag
+            mathSign = true
+        case 14:
+            firstNum = Double(result.text!)!
+            result.text = "+"
+            operation = sender.tag
+            mathSign = true
+        case 16:
             result.text = result.text! + "."
-            
-        }
-        else if sender.tag == 17{
+        case 17:
             result.text = String(sqrt(Double(result.text!)!))
-        }
-        
-        else if sender.tag == 18{
+        case 18:
             result.text = "-" + result.text!
-
-        }
-        else if sender.tag == 19{
+        case 19:
             if firstNum == 0 {
                 result.text = String(Double(Double(result.text!)! / 100))
             }else {
             result.text = String(Double(firstNum * numberFromScreen / 100))
             }
+        default:
+            print("Done")
         }
-
-        else if sender.tag == 10{
-            result.text = ""
-            firstNum = 0
-            numberFromScreen = 0
-            operation = 0
-            
+        
+        switch operation {
+        case 11 where sender.tag == 15:
+            result.text = String(firstNum / numberFromScreen)
+        case 12 where sender.tag == 15:
+//            print("num1 = ",firstNum)
+//            print("num2 = ",numberFromScreen)
+            result.text = String(firstNum * numberFromScreen)
+        case 13 where sender.tag == 15:
+            result.text = String(firstNum - numberFromScreen)
+        case 14 where sender.tag == 15:
+            result.text = String(firstNum + numberFromScreen)
+        default:
+            print("Break")
         }
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-
-
 }
 
